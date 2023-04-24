@@ -1,19 +1,19 @@
 import Image from 'next/image'
 import { useEffect } from 'react'
 import Genres from './Genres'
-const PreviewCard = ({ trendingMovies }) => {
+const PreviewCard = ({ tilesData, title, style, setModalVisible, setModalContentId }) => {
   useEffect(() => {
-    // console.log(trendingMovies[0])
+    console.log(tilesData)
   }, [])
   return (
-    <div className={'flex flex-col mt-[-127px] relative z-30'}>
-      <h2 className={'text-white text-xl px-24'}>Trending Movies</h2>
+    <div className={`flex flex-col relative z-30 ${style}`}>
+      <h2 className={'text-white text-xl px-24'}>{title}</h2>
       <div
         className={
-          'inline-flex flex-row gap-3 overflow-x-auto relative z-20 px-24 py-8'
+          'inline-flex flex-row gap-2 overflow-x-auto relative z-20 px-24 py-8'
         }
       >
-        {trendingMovies?.map((movie) => {
+        {tilesData?.map((movie) => {
           return (
             <div
               key={movie.backdrop_path}
@@ -23,9 +23,13 @@ const PreviewCard = ({ trendingMovies }) => {
               style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`,
               }}
+              onClick={() => {
+                setModalVisible(true)
+                setModalContentId(movie.id)
+              }}
             >
               <h4 className={'text-white relative z-10'}>
-                {movie.original_title}
+                {movie.original_title ? movie.original_title : movie.original_name}
               </h4>
               <Genres id={movie.id} />
               <div

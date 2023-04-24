@@ -13,12 +13,18 @@ import { useEffect } from 'react'
 // Components
 import PreviewCard from '../../components/PreviewCard'
 
+// Ventana Modal
+import Modal from '../../components/Modal'
+
 const baseURL = 'https://api.themoviedb.org/3'
 const imageURL = 'https://image.tmdb.org/t/p/original/'
 
 export default function Browse() {
   const [heroMovie, setHeroMovie] = useState()
   const [trendingMovies, setTrendingMovies] = useState()
+  const [trendingTv, setTrendingTv] = useState()
+  const [modalVisible, setModalVisible] = useState(false)
+  const [modalContentId, setModalContentId] = useState()
   // Pedir peli top rated
   useEffect(() => {
     fetch(`${baseURL}${requests.fetchTopRated}`)
@@ -36,6 +42,14 @@ export default function Browse() {
       setTrendingMovies(data.results)
     })
   }, [])
+
+    //Pedir lista de tvs shows trending
+    useEffect(() => {
+      fetch(`${baseURL}${requests.fetchTrendingTv}`).then(res => res.json()).then(data => {
+        // console.log('TRENDING MOVIES', data.results)
+        setTrendingTv(data.results)
+      })
+    }, [])
 
   return (
     <div className={'bg-black w-screen flex flex-col overflow-y-auto'}>
@@ -148,7 +162,9 @@ export default function Browse() {
           }}
         ></div>
       </div>
-      <PreviewCard trendingMovies={trendingMovies} />
+      <PreviewCard type={'movie'} tilesData={trendingMovies} title={'Trending Movies'} style={'mt-[-127px]'} setModalVisible={setModalVisible} setModalContentId={setModalContentId}/>
+      <PreviewCard type={'tv'} tilesData={trendingTv} title={'Trending TV Shows'} setModalVisible={setModalVisible} setModalContentId={setModalContentId}/>
+      <Modal modalVisible={modalVisible} setModalVisible={setModalVisible} modalContentId={modalContentId}/>
     </div>
   )
 }
