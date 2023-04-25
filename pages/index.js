@@ -5,7 +5,7 @@ export default function Home() {
     <div
       className={'bg-black w-screen h-screen flex flex-col items-center justify-center'}
     >
-      <p className={'text-white text-[3.5vw]'}>Whos's watching?</p>
+      <p className={'text-white text-[3.5vw]'}>Who's watching?</p>
       <div className={'flex flex-row gap-5 mt-6'}>
         {USERS.map((user, index) => (
           <div key={index} className={'flex flex-col items-center justify-center'}>
