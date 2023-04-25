@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+import Genres from './Genres'
 const Modal = ({ modalVisible, setModalVisible, modalContentId, type }) => {
   const baseURL = 'https://api.themoviedb.org/3'
   const API_KEY = 'f247ff737ec8062f3b5e027789eab748'
@@ -50,8 +51,10 @@ const Modal = ({ modalVisible, setModalVisible, modalContentId, type }) => {
           <div className={'p-8 w-full overflow-y-auto flex flex-row'}>
             <p>{content?.overview}</p>
             <div>
+              {
+                modalContentId ? <Genres id={modalContentId} style={'text-black'} /> : ''
+              }
               Cast
-              Género
               Revenue
             </div>
           </div>

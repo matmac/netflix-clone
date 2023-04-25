@@ -37,24 +37,30 @@ export default function Browse() {
 
   //Pedir lista de pelis trending
   useEffect(() => {
-    fetch(`${baseURL}${requests.fetchTrendingMovies}`).then(res => res.json()).then(data => {
-      // console.log('TRENDING MOVIES', data.results)
-      setTrendingMovies(data.results)
-    })
+    fetch(`${baseURL}${requests.fetchTrendingMovies}`)
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log('TRENDING MOVIES', data.results)
+        setTrendingMovies(data.results)
+      })
   }, [])
 
-    //Pedir lista de tvs shows trending
-    useEffect(() => {
-      fetch(`${baseURL}${requests.fetchTrendingTv}`).then(res => res.json()).then(data => {
+  //Pedir lista de tvs shows trending
+  useEffect(() => {
+    fetch(`${baseURL}${requests.fetchTrendingTv}`)
+      .then((res) => res.json())
+      .then((data) => {
         // console.log('TRENDING MOVIES', data.results)
         setTrendingTv(data.results)
       })
-    }, [])
+  }, [])
 
   return (
     <div className={'bg-black w-screen flex flex-col overflow-y-auto'}>
       <header
-        className={'absolute w-screen z-10 flex flex-row items-center justify-between px-8 pt-8'}
+        className={
+          'absolute w-screen z-10 flex flex-row items-center justify-between px-8 pt-8'
+        }
       >
         <div className={'flex flex-row items-center relative z-10'}>
           <NetflixLogo className={'scale-75'} />
@@ -106,16 +112,10 @@ export default function Browse() {
           />
         </div>
         <div
-          className={
-            'absolute h-16 w-screen top-0 left-0 bg-gradient-to-b from-black z-0'
-          }
+          className={'absolute h-16 w-screen top-0 left-0 bg-gradient-to-b from-black z-0'}
         ></div>
       </header>
-      <div
-        className={
-          'relative w-screen h-[750px] z-0 left-0 overflow-hidden flex items-center p-24'
-        }
-      >
+      <div className={'relative w-screen h-[750px] z-0 left-0 overflow-hidden flex items-center p-24'}>
         <div className={'relative z-10 flex flex-col'}>
           <Image
             src={'/images/netflix-movies-tag.svg'}
@@ -141,7 +141,7 @@ export default function Browse() {
               type="button"
               className="inline-flex items-center gap-x-2 rounded bg-white px-3.5 py-2.5 text-lg font-semibold text-black shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
             >
-              <PlayIcon className={'w-6 h-6'}  />
+              <PlayIcon className={'w-6 h-6'} />
               Play
             </button>
             <button
@@ -153,18 +153,29 @@ export default function Browse() {
             </button>
           </div>
         </div>
-        <div
-          className={
-            'absolute top-0 left-0 bg-cover bg-center w-screen h-full z-0 opacity-40'
-          }
-          style={{
-            backgroundImage: `url(https://image.tmdb.org/t/p/original/${heroMovie?.backdrop_path})`,
-          }}
-        ></div>
+        <div className={'absolute top-0 left-0 bg-cover bg-center w-screen h-full z-0 opacity-40'}
+          style={{backgroundImage: `url(https://image.tmdb.org/t/p/original/${heroMovie?.backdrop_path})`}}></div>
       </div>
-      <PreviewCard type={'movie'} tilesData={trendingMovies} title={'Trending Movies'} style={'mt-[-127px]'} setModalVisible={setModalVisible} setModalContentId={setModalContentId}/>
-      <PreviewCard type={'tv'} tilesData={trendingTv} title={'Trending TV Shows'} setModalVisible={setModalVisible} setModalContentId={setModalContentId}/>
-      <Modal modalVisible={modalVisible} setModalVisible={setModalVisible} modalContentId={modalContentId}/>
+      <PreviewCard
+        type={'movie'}
+        tilesData={trendingMovies}
+        title={'Trending Movies'}
+        style={'mt-[-127px]'}
+        setModalVisible={setModalVisible}
+        setModalContentId={setModalContentId}
+      />
+      <PreviewCard
+        type={'tv'}
+        tilesData={trendingTv}
+        title={'Trending TV Shows'}
+        setModalVisible={setModalVisible}
+        setModalContentId={setModalContentId}
+      />
+      <Modal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        modalContentId={modalContentId}
+      />
     </div>
   )
 }

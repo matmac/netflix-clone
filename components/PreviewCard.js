@@ -31,7 +31,7 @@ const PreviewCard = ({ tilesData, title, style, setModalVisible, setModalContent
               <h4 className={'text-white relative z-10'}>
                 {movie.original_title ? movie.original_title : movie.original_name}
               </h4>
-              <Genres id={movie.id} />
+              <Genres id={movie.id} style={'text-white/60'} />
               <div
                 className={
                   'absolute inset-0 bg-gradient-to-t from-black/70 z-0'
