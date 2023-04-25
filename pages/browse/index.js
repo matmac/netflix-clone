@@ -24,7 +24,7 @@ export default function Browse() {
   const [trendingMovies, setTrendingMovies] = useState()
   const [trendingTv, setTrendingTv] = useState()
   const [modalVisible, setModalVisible] = useState(false)
-  const [modalContentId, setModalContentId] = useState()
+  const [modalContent, setModalContent] = useState()
   // Pedir peli top rated
   useEffect(() => {
     fetch(`${baseURL}${requests.fetchTopRated}`)
@@ -162,19 +162,19 @@ export default function Browse() {
         title={'Trending Movies'}
         style={'mt-[-127px]'}
         setModalVisible={setModalVisible}
-        setModalContentId={setModalContentId}
+        setModalContent={setModalContent}
       />
       <PreviewCard
         type={'tv'}
         tilesData={trendingTv}
         title={'Trending TV Shows'}
         setModalVisible={setModalVisible}
-        setModalContentId={setModalContentId}
+        setModalContent={setModalContent}
       />
       <Modal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
-        modalContentId={modalContentId}
+        modalContent={modalContent}
       />
     </div>
   )

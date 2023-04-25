@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useEffect } from 'react'
 import Genres from './Genres'
-const PreviewCard = ({ tilesData, title, style, setModalVisible, setModalContentId }) => {
+const PreviewCard = ({ tilesData, title, style, setModalVisible, setModalContent }) => {
   useEffect(() => {
     console.log(tilesData)
   }, [])
@@ -25,7 +25,7 @@ const PreviewCard = ({ tilesData, title, style, setModalVisible, setModalContent
               }}
               onClick={() => {
                 setModalVisible(true)
-                setModalContentId(movie.id)
+                setModalContent(movie)
               }}
             >
               <h4 className={'text-white relative z-10'}>
